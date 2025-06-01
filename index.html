@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -5,27 +6,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Desperte Seu Propósito</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @keyframes pulse-border {
+        0% { box-shadow: 0 0 0 0 rgba(99,102,241, 0.7); }
+        70% { box-shadow: 0 0 0 10px rgba(99,102,241, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(99,102,241, 0); }
+      }
+
+      .animate-pulse-glow {
+        animation: pulse-border 2s infinite;
+      }
+
+      .typewriter > span {
+        display: inline-block;
+        border-right: 2px solid #6366f1;
+        white-space: nowrap;
+        overflow: hidden;
+        animation: typing 4s steps(40, end), blink .75s step-end infinite;
+      }
+
+      @keyframes typing {
+        from { width: 0 }
+        to { width: 100% }
+      }
+
+      @keyframes blink {
+        50% { border-color: transparent }
+      }
+    </style>
   </head>
   <body class="bg-gradient-to-br from-indigo-100 to-white min-h-screen flex items-center justify-center">
-    <div class="bg-white rounded-3xl shadow-xl border border-gray-200 p-8 max-w-xl mx-auto text-center space-y-6">
-      <h1 class="text-3xl font-extrabold text-gray-800 mb-4">✨ Desperte Seu Propósito ✨</h1>
-      <p class="text-gray-600 text-lg mb-6">“Às vezes, tudo o que precisamos é fazer a pergunta certa.”</p>
+    <div class="bg-white rounded-3xl shadow-xl border border-gray-200 px-10 py-8 max-w-2xl mx-auto text-center space-y-6">
+      <h1 class="text-3xl font-extrabold text-gray-800 mb-2">✨ Desperte Seu Propósito ✨</h1>
+      <p class="text-gray-600 text-lg mb-4">“Às vezes, tudo o que precisamos é fazer a pergunta certa.”</p>
 
-      <p class="text-gray-700 text-base leading-relaxed">
-        Um caminho possível começa agora. Este espaço é pra você se ouvir, se reconhecer e, quem sabe, se surpreender.
-        Você pode ir aos poucos. Só não precisa ir embora.
-      </p>
+      <div class="typewriter text-gray-700 text-base leading-relaxed min-h-[4rem]">
+        <span id="typewriter-text">Um caminho possível começa agora. Este espaço é pra você se ouvir...</span>
+      </div>
 
-      <p class="text-gray-700 text-base leading-relaxed">
-        Às vezes o clique não vem de fora, mas da coragem de olhar pra dentro.
-        Você não está só. Aqui é seguro.
-      </p>
-
-      <button class="bg-indigo-600 text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-indigo-700 transition">
+      <button onclick="startJourney()" class="bg-indigo-600 animate-pulse-glow hover:bg-indigo-700 transition text-white px-6 py-3 rounded-full font-semibold shadow-md">
         Começar minha jornada
       </button>
     </div>
+
+    <script>
+      const frases = [
+        "Um caminho possível começa agora. Este espaço é pra você se ouvir, se reconhecer e, quem sabe, se surpreender.",
+        "Você pode ir aos poucos. Só não precisa ir embora.",
+        "Às vezes o clique não vem de fora, mas da coragem de olhar pra dentro.",
+        "Você não está só. Aqui é seguro.",
+      ];
+
+      let index = 0;
+      const texto = document.getElementById('typewriter-text');
+
+      function trocarFrase() {
+        texto.style.animation = 'none';
+        void texto.offsetWidth;
+        texto.textContent = frases[index];
+        texto.style.animation = null;
+        index = (index + 1) % frases.length;
+      }
+
+      setInterval(trocarFrase, 9000);
+
+      function startJourney() {
+        alert("🚀 Jornada iniciada! (Em breve: navegação para próxima tela)");
+      }
+    </script>
   </body>
 </html>
-
-
